@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title={cardTitle} icon-name="custom:custom63">
+        <lightning-button slot="actions" label="Add New Task" variant="brand" onclick={openModal}></lightning-button>
+
+        <template if:true={pagedTasks}>
+            <lightning-datatable
+                key-field="Id"
+                data={pagedTasks}
+                columns={columns}
+                onsave={handleSave}
+                draft-values={draftValues}
+                onrowaction={handleRowAction}
+                hide-checkbox-column
+            ></lightning-datatable>
+
+            <!-- Pagination Controls -->
+            <div class="slds-align_absolute-center slds-m-top_small">
+                <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrev}></lightning-button>
+                <span class="slds-m-horizontal_small">Page {pageNumber} of {totalPages}</span>
+                <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+            </div>
+        </template>
+
+        <!-- Modal to create task -->
+        <template if:true={isModalOpen}>
+            <c-add-project-task-modal account-id={recordId} ontaskcreated={handleTaskCreated} onclose={closeModal}></c-add-project-task-modal>
+        </template>
+    </lightning-card>
+</template>
