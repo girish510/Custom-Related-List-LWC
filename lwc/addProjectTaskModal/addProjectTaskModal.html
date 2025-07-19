@@ -1,0 +1,27 @@
+<template>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">New Project Task</h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium">
+                <lightning-input label="Task Name" value={taskName} data-id="Name" onchange={handleChange}></lightning-input>
+                <lightning-combobox
+                    name="Status"
+                    label="Status"
+                    value={status}
+                    placeholder="Select Status"
+                    options={statusOptions}
+                    onchange={handleChange}
+                    data-id="Status__c"
+                ></lightning-combobox>
+                <lightning-input type="date" label="Due Date" value={dueDate} data-id="Due_Date__c" onchange={handleChange}></lightning-input>
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
